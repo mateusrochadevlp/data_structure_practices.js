@@ -39,24 +39,32 @@ module.exports = class Custom {
     }
     return unionSet;
   }
-  intersection(otherSet) {
-    const intersectionSet = new Custom();
-    const values = this.values();
-    const otherValues = otherSet.values();
+    intersection(otherSet) {
+      const intersectionSet = new Custom();
+      const values = this.values();
+      const otherSetValues = otherSet.values();
 
-    let biggerSet = values;
-    let smallSet = otherValues;
-    
-    if (otherValues.length > values.length) {
-      biggerSet = otherValues;
-      smallSet = v
-      alues;
-       }
+      let bigSet = values;
+      let smallSet = otherSetValues;
+      if (otherSetValues.length > values.length) {
+         bigSet = otherSetValues;
+         smallSet = values;
+      }
+
       smallSet.forEach(value => {
-        if (biggerSet.includes(value)) {
-          intersectionSet.add(value);
+        if (bigSet.includes(value)) {
+          intersectionSet.add(value)
         }
       });
-     return intersectionSet;
-  }
+      return intersectionSet;
+    }
+    diference(otherSet) {
+      const diferenceSet = new Custom();
+      this.values().forEach(value => {
+        if (!otherSet.has(value)) {
+          diferenceSet.add(value)
+        }
+      });
+      return diferenceSet();
+    }
 };
